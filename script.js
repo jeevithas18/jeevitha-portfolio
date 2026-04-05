@@ -1,85 +1,82 @@
-// ===== TYPING EFFECT =====
-const text = "Hello 👋 Welcome to my Portfolio!";
-let index = 0;
+// ===== WAIT FOR PAGE LOAD =====
+document.addEventListener("DOMContentLoaded", () => {
 
-function typeEffect() {
-  const element = document.getElementById("typing-text");
+  // ===== TYPING EFFECT =====
+  const text = "Hello 👋 Welcome to my Portfolio!";
+  let index = 0;
+  const typingElement = document.getElementById("typing-text");
 
-  if (!element) return;
+  function typeEffect() {
+    if (!typingElement) return;
 
-  if (index < text.length) {
-    element.innerHTML += text.charAt(index);
-    index++;
-    setTimeout(typeEffect, 40);
+    if (index < text.length) {
+      typingElement.innerHTML += text.charAt(index);
+      index++;
+      setTimeout(typeEffect, 40);
+    }
   }
-}
 
-window.addEventListener("load", () => {
-  setTimeout(typeEffect, 300); // small delay fixes blank issue
+  // start typing after slight delay
+  setTimeout(typeEffect, 300);
+
+
+  // ===== SCROLL REVEAL =====
+  function revealOnScroll() {
+    const reveals = document.querySelectorAll(".reveal");
+
+    reveals.forEach((el) => {
+      const windowHeight = window.innerHeight;
+      const elementTop = el.getBoundingClientRect().top;
+      const revealPoint = 120;
+
+      if (elementTop < windowHeight - revealPoint) {
+        el.classList.add("active");
+      } else {
+        el.classList.remove("active");
+      }
+    });
+  }
+
+  window.addEventListener("scroll", revealOnScroll);
+  revealOnScroll(); // run once on load
+
+
+  // ===== HAMBURGER MENU =====
+  const menuToggle = document.getElementById("menu-toggle");
+  const navLinks = document.getElementById("nav-links");
+
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+  }
+
+
+  // ===== CLOSE MENU AFTER CLICK (MOBILE) =====
+  document.querySelectorAll("#nav-links a").forEach((link) => {
+    link.addEventListener("click", () => {
+      navLinks.classList.remove("active");
+    });
+  });
+
+
+  // ===== SMOOTH SCROLL =====
+  document.querySelectorAll("nav a").forEach((link) => {
+    link.addEventListener("click", function (e) {
+      e.preventDefault();
+
+      const target = document.querySelector(this.getAttribute("href"));
+
+      if (target) {
+        target.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+    });
+  });
+
+
+  // ===== DEBUG =====
+  console.log("🚀 Portfolio fully loaded!");
 });
-// start typing when page loads
-window.addEventListener("load", typeEffect);
-// ===== SCROLL REVEAL =====
-function revealOnScroll() {
-  const reveals = document.querySelectorAll(".reveal");
-
-  reveals.forEach((el) => {
-    const windowHeight = window.innerHeight;
-    const elementTop = el.getBoundingClientRect().top;
-    const revealPoint = 120;
-
-    if (elementTop < windowHeight - revealPoint) {
-      el.classList.add("active");
-    } else {
-      el.classList.remove("active");
-    }
-  });
-}
-
-window.addEventListener("scroll", revealOnScroll);
-window.addEventListener("load", revealOnScroll); // trigger on load too
-
-// ===== HAMBURGER MENU =====
-const menuToggle = document.getElementById("menu-toggle");
-const navLinks = document.getElementById("nav-links");
-
-if (menuToggle) {
-  menuToggle.addEventListener("click", () => {
-    navLinks.classList.toggle("active");
-  });
-}
-
-// ===== CLOSE MENU ON CLICK (MOBILE) =====
-document.querySelectorAll("#nav-links a").forEach((link) => {
-  link.addEventListener("click", () => {
-    navLinks.classList.remove("active");
-  });
-});
-
-// ===== SMOOTH SCROLL =====
-document.querySelectorAll("nav a").forEach((link) => {
-  link.addEventListener("click", function (e) {
-    e.preventDefault();
-
-    const target = document.querySelector(this.getAttribute("href"));
-    if (target) {
-      target.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
-    }
-  });
-});
-
-// ===== OPTIONAL BUTTON ALERT (SAFE) =====
-const contactBtn = document.getElementById("contactBtn");
-
-if (contactBtn) {
-  contactBtn.addEventListener("click", () => {
-    alert("Thanks for reaching out! Jeevitha will contact you soon 😊");
-  });
-}
-
-// ===== DEBUG =====
-console.log("🚀 Portfolio loaded successfully!");
-    
