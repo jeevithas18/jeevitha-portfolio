@@ -14,33 +14,26 @@ body {
   background: black;
   color: white;
   font-family: Arial, sans-serif;
-}
-
-/* ===== BACKGROUND GLOW ===== */
-body::before {
-  content: "";
-  position: fixed;
-  width: 300px;
-  height: 300px;
-  background: #ff004f;
-  filter: blur(150px);
-  top: 20%;
-  left: 10%;
-  z-index: -1;
+  padding-top: 70px; /* FIX NAVBAR OVERLAP */
 }
 
 /* ===== NAVBAR ===== */
 nav {
   position: fixed;
-  top: 20px;
-  right: 40px;
+  top: 0;
+  right: 0;
+  width: 100%;
+  background: black;
+  padding: 15px 40px;
+  display: flex;
+  justify-content: flex-end;
   z-index: 1000;
 }
 
 nav ul {
   list-style: none;
   display: flex;
-  gap: 20px;
+  gap: 25px;
 }
 
 nav ul li a {
@@ -62,46 +55,44 @@ nav ul li a:hover {
   color: white;
 }
 
-/* ===== HOME ===== */
+/* ===== HOME SECTION (FIXED PERFECTLY) ===== */
 .container {
   display: flex;
-  justify-content: center;  /* FIXED CENTER */
+  justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
-  min-height: 100vh;
-  padding: 0 10%;
-  gap: 40px;
+  min-height: calc(100vh - 70px);
+  padding: 20px;
+  gap: 50px;
   text-align: center;
+  flex-wrap: wrap;
 }
 
-.popup-text h1 {
-  font-size: 2.5rem;
-  margin-bottom: 15px;
+.popup-text {
+  max-width: 500px;
 }
 
 #typing-text {
-  font-size: 2.2rem;
+  font-size: 2.3rem;
+  margin-bottom: 15px;
 }
 
 .popup-text p {
   font-size: 1.2rem;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 .highlight {
-  background: linear-gradient(45deg, #ff004f, #ff7a00);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #ff004f;
 }
 
-/* ===== BUTTON ===== */
+/* BUTTON */
 button {
   margin-top: 20px;
-  padding: 10px 20px;
+  padding: 12px 22px;
   background: #ff004f;
   color: black;
   border: none;
-  border-radius: 5px;
+  border-radius: 6px;
   cursor: pointer;
   transition: 0.3s;
 }
@@ -110,7 +101,7 @@ button:hover {
   transform: scale(1.05);
 }
 
-/* ===== PROFILE IMAGE ===== */
+/* PROFILE IMAGE */
 .profile-pic {
   width: 220px;
   height: 220px;
@@ -119,7 +110,7 @@ button:hover {
   border: 3px solid white;
 }
 
-/* ===== SECTION ===== */
+/* ===== SECTIONS ===== */
 .section {
   padding: 80px 10%;
 }
@@ -127,7 +118,7 @@ button:hover {
 .section h2,
 #skills h1 {
   color: #ff004f;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   text-align: center;
 }
 
@@ -135,7 +126,7 @@ button:hover {
 .project-gallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
+  gap: 25px;
 }
 
 .project-card {
@@ -146,8 +137,8 @@ button:hover {
 }
 
 .project-card:hover {
-  transform: translateY(-10px) scale(1.02);
-  box-shadow: 0 0 20px rgba(255, 0, 79, 0.5);
+  transform: translateY(-10px);
+  box-shadow: 0 0 20px rgba(255, 0, 79, 0.4);
 }
 
 .project-card img {
@@ -160,7 +151,7 @@ button:hover {
   position: absolute;
   bottom: 0;
   width: 100%;
-  background: rgba(0,0,0,0.7);
+  background: rgba(0,0,0,0.8);
   padding: 15px;
   transform: translateY(100%);
   transition: 0.3s;
@@ -192,7 +183,7 @@ button:hover {
 }
 
 .skill-card:hover {
-  transform: translateY(-10px);
+  transform: translateY(-8px);
 }
 
 .skill-card img {
@@ -247,7 +238,7 @@ footer {
     right: -100%;
     height: 100vh;
     width: 200px;
-    background: #111;
+    background: black;
     flex-direction: column;
     padding-top: 60px;
     transition: 0.3s;
@@ -260,18 +251,13 @@ footer {
   .container {
     flex-direction: column;
   }
-
-  .profile-pic {
-    width: 180px;
-    height: 180px;
-  }
 }
 
 /* Mobile */
 @media (max-width: 480px) {
 
   #typing-text {
-    font-size: 1.6rem;
+    font-size: 1.7rem;
   }
 
   .popup-text p {
