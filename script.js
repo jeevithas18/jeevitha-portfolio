@@ -1,3 +1,19 @@
+// ===== TYPING EFFECT =====
+const text = "Hello 👋 Welcome to my Portfolio!";
+let index = 0;
+
+function typeEffect() {
+  const element = document.getElementById("typing-text");
+
+  if (index < text.length) {
+    element.innerHTML += text.charAt(index);
+    index++;
+    setTimeout(typeEffect, 50);
+  }
+}
+
+// start typing when page loads
+window.addEventListener("load", typeEffect);
 // ===== SCROLL REVEAL =====
 function revealOnScroll() {
   const reveals = document.querySelectorAll(".reveal");
