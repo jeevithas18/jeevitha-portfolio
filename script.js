@@ -1,25 +1,6 @@
 // ===== WAIT FOR PAGE LOAD =====
 document.addEventListener("DOMContentLoaded", () => {
 
-  // ===== TYPING EFFECT =====
-  const text = "Hello 👋 Welcome to my Portfolio!";
-  let index = 0;
-  const typingElement = document.getElementById("typing-text");
-
-  function typeEffect() {
-    if (!typingElement) return;
-
-    if (index < text.length) {
-      typingElement.innerHTML += text.charAt(index);
-      index++;
-      setTimeout(typeEffect, 40);
-    }
-  }
-
-  // start typing after slight delay
-  setTimeout(typeEffect, 300);
-
-
   // ===== SCROLL REVEAL =====
   function revealOnScroll() {
     const reveals = document.querySelectorAll(".reveal");
@@ -77,6 +58,13 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 
+  // ===== OPTIONAL: SMALL ENTRY ANIMATION =====
+  const home = document.getElementById("home");
+  if (home) {
+    home.style.opacity = "1";
+  }
+
+
   // ===== DEBUG =====
-  console.log("🚀 Portfolio fully loaded!");
+  console.log("🚀 Portfolio running perfectly!");
 });
