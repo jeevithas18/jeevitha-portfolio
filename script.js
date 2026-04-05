@@ -1,9 +1,11 @@
+// ===== SCROLL REVEAL =====
 function revealOnScroll() {
-  let reveals = document.querySelectorAll(".reveal");
-  reveals.forEach(el => {
-    let windowHeight = window.innerHeight;
-    let elementTop = el.getBoundingClientRect().top;
-    let revealPoint = 150;
+  const reveals = document.querySelectorAll(".reveal");
+
+  reveals.forEach((el) => {
+    const windowHeight = window.innerHeight;
+    const elementTop = el.getBoundingClientRect().top;
+    const revealPoint = 120;
 
     if (elementTop < windowHeight - revealPoint) {
       el.classList.add("active");
@@ -14,20 +16,49 @@ function revealOnScroll() {
 }
 
 window.addEventListener("scroll", revealOnScroll);
+window.addEventListener("load", revealOnScroll); // trigger on load too
 
-// Smooth scrolling for nav links
-document.querySelectorAll("nav a").forEach(link => {
-  link.addEventListener("click", function(e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute("href"));
-    target.scrollIntoView({ behavior: "smooth" });
+// ===== HAMBURGER MENU =====
+const menuToggle = document.getElementById("menu-toggle");
+const navLinks = document.getElementById("nav-links");
+
+if (menuToggle) {
+  menuToggle.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+  });
+}
+
+// ===== CLOSE MENU ON CLICK (MOBILE) =====
+document.querySelectorAll("#nav-links a").forEach((link) => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("active");
   });
 });
-// Add interactivity later if needed
-console.log("Portfolio site loaded!");
 
-// Example interactivity
-document.getElementById("contactBtn").addEventListener("click", function() {
-  alert("Thanks for reaching out, Jeevitha will contact you soon!");
+// ===== SMOOTH SCROLL =====
+document.querySelectorAll("nav a").forEach((link) => {
+  link.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const target = document.querySelector(this.getAttribute("href"));
+    if (target) {
+      target.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }
+  });
 });
 
+// ===== OPTIONAL BUTTON ALERT (SAFE) =====
+const contactBtn = document.getElementById("contactBtn");
+
+if (contactBtn) {
+  contactBtn.addEventListener("click", () => {
+    alert("Thanks for reaching out! Jeevitha will contact you soon 😊");
+  });
+}
+
+// ===== DEBUG =====
+console.log("🚀 Portfolio loaded successfully!");
+    
