@@ -283,7 +283,7 @@ footer {
 
 /* Hand shake animation */
 .hero-title span::after {
-  content: " 🤝";
+  content: " 👋";
   display: inline-block;
   animation: shake 1.5s infinite;
 }
