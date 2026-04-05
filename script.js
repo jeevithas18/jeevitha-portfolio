@@ -5,13 +5,18 @@ let index = 0;
 function typeEffect() {
   const element = document.getElementById("typing-text");
 
+  if (!element) return;
+
   if (index < text.length) {
     element.innerHTML += text.charAt(index);
     index++;
-    setTimeout(typeEffect, 50);
+    setTimeout(typeEffect, 40);
   }
 }
 
+window.addEventListener("load", () => {
+  setTimeout(typeEffect, 300); // small delay fixes blank issue
+});
 // start typing when page loads
 window.addEventListener("load", typeEffect);
 // ===== SCROLL REVEAL =====
